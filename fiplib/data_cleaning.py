@@ -1,8 +1,9 @@
 import pandas as pd
 
 
-def nulls(df: pd.DataFrame):
-    return df.isna().sum()
+def missing_values(df: pd.DataFrame):
+    result = df.isna().sum()
+    return result
 
 
 def duplicates(df: pd.DataFrame, column: str):
@@ -10,8 +11,14 @@ def duplicates(df: pd.DataFrame, column: str):
     return result
 
 
-def info(df: pd.DataFrame, column: str):
-    print("Nulls:\n{0}\n".format(nulls(df)))
-    print("Duplicates:\n{0}\n".format(
-        pd.DataFrame(duplicates(df, column))))
+def categorical_columns(df: pd.DataFrame):
+    s = (df.dtypes == "object")
+    result = s[s].index()
+    return result
+
+
+def info(df: pd.DataFrame, column: str):  # TODO
+    # print("Missing values:\n{0}\n".format(missing_values(df)))
+    # print("Duplicates:\n{0}\n".format(
+    #    pd.DataFrame(duplicates(df, column))))
     return
